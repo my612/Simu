@@ -8,6 +8,17 @@ class NOT:
     
         
 
+class AND:
+    def __init__(self, inpName1, inpName2, input1, input2, outName):
+        self.input1 = input1
+        self.input2 = input2
+        self.input_name1 = inpName1
+        self.input_name2 = inpName2
+        self.output_name = outName
+
+    def value():
+        return input1 and input2
+
 
 def parseVerilog(filePath):
     
