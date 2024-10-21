@@ -1,21 +1,14 @@
-`timescale 1ns/1ps
+module circ4(in0, in1, in2, in3, o0, o1, en);
 
-module circ4(input [3:0] in, output reg [1:0] out, input en);
+    input in0;
+    input in1;
+    input in2;
+    input in3;
+    
+    output o0;
+    output o1;
 
-always @ * begin
-    if (en) begin
-      if (in[3])
-        out = 2'b11;
-      else if (in[2])
-        out = 2'b10;
-      else if (in[1])
-        out = 2'b01;
-      else if (in[0])
-        out = 2'b00;
-      else
-        out = 2'b00;
-    end else
-      out = 2'b00;
-  end 
+    or(o1, in3, in2);
+    or(o0, in3, in1);
   
 endmodule
