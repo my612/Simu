@@ -1,14 +1,24 @@
 `timescale 1ns/1ps
 
-module circ3(input [1:0] in, output[3:0] out, input en);
-  wire [1:0] w;
+module circ3(in0, in1, en, o0, o1, o2, o3);
+  input in0;
+  input in1;
+  input en;
 
-  not(w[0], in[0]);
-  not(w[1], in[1]);
+  output o0;
+  output o1;
+  output o2;
+  output o3;
+  
+  wire w0;
+  wire w1;
 
-  and (out[0], w[1], w[0], en);
-  and (out[1], w[1], in[0], en);
-  and (out[2], in[1], w[0], en);
-  and (out[3], in[1], in[0], en);
+  not #(2) (w0, in0);
+  not #(2) (w1, in1);
+
+  and #(5) (o0, w1, w0, en);
+  and #(5) (o1, w1, in0, en);
+  and #(5) (o2, in1, w0, en);
+  and #(5) (o3, in1, in0, en);
   
 endmodule
