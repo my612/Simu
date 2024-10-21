@@ -106,3 +106,34 @@ def parseVerilog(filePath):
 
     
 parseVerilog("test.v")
+
+class NOT:
+    def __init__(self, inpName, input, outName, delay):
+        self.input = input
+        self.input_name = inpName
+        self.output_name = outName
+        self.delay = delay
+    def value():
+        return not input
+    
+        
+
+
+def parseVerilog(filePath):
+    f = open(filePath, "r")
+    inputs = {}
+    outputs = {}
+    wires = {}
+    gates = {}
+    for x in f:
+        line = f.split()
+        if(line[0] == "input"):
+            inputs.append(line[1])
+        if(line[0] == "output"):
+            outputs.append(line[1])
+        if(line[0] == "wire"):
+            wires.append(line[1])
+            
+    return inputs, outputs, wires
+    
+ins, outs, ws = parseVerilog("test.v")
