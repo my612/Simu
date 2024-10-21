@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-module circ2(input A, input B, input C_in, output S, output C_out);
+module circ2(input A, input B, input C_in, output S, output C_out); // full adder
 wire w1, w2, w3, w4;
 
 xor(w1, A, B);
