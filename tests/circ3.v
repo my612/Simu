@@ -1,5 +1,3 @@
-`timescale 1ns/1ps
-
 module circ3(in0, in1, en, o0, o1, o2, o3);
   input in0;
   input in1;
