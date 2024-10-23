@@ -10,7 +10,7 @@ class NOT:
         self.delay = delay
     def value(self):
         time.sleep(self.delay /1000)
-        return not self.input
+        return not self.inputs.values()[0]
     def setInput(self, change:Change):
         self.inputs[change.input_name] = change.input_value
 
@@ -23,7 +23,7 @@ class AND:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return self.input1 and self.input2
+        return self.inputs.values()[0] and self.inputs.values()[1]
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
 
@@ -37,7 +37,7 @@ class OR:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return self.input1 or self.input2
+        return self.inputs.values()[0] or self.inputs.values()[1]
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
         
@@ -50,7 +50,7 @@ class NAND:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return not(self.input1 and self.input2)
+        return not(self.inputs.values()[0] and self.inputs.values()[1])
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
         
@@ -63,7 +63,7 @@ class NOR:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return not(self.input1 or self.input2)
+        return not(self.inputs.values()[0] or self.inputs.values()[1])
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
     
@@ -76,7 +76,7 @@ class XOR:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return self.input1 ^ self.input2
+        return self.inputs.values()[0] ^ self.inputs.values()[1]
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
     
@@ -89,6 +89,6 @@ class buffer:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return self.input   
+        return self.inputs.values()[0]   
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
