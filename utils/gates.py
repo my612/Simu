@@ -8,7 +8,7 @@ class NOT:
         self.output_name = outName
         self.delay = delay
     def value(self):
-        time.sleep(self.delay)
+        time.sleep(self.delay /1000)
         return not self.input
     def setInput(self, input):
         self.input = input
@@ -24,7 +24,7 @@ class AND:
         self.delay = delay
 
     def value(self):
-        time.sleep(self.delay)
+        time.sleep(self.delay /1000)
         return self.input1 and self.input2
     def setInputs(self, input1, input2):
         self.input1 = input1
@@ -41,7 +41,7 @@ class OR:
         self.delay = delay
 
     def value(self):
-        time.sleep(self.delay)
+        time.sleep(self.delay /1000)
         return self.input1 or self.input2
     def setInputs(self, input1, input2):
         self.input1 = input1
@@ -58,7 +58,7 @@ class NAND:
         self.delay = delay
 
     def value(self):
-        time.sleep(self.delay)
+        time.sleep(self.delay /1000)
         return not(self.input1 and self.input2)
     def setInputs(self, input1, input2):
         self.input1 = input1
@@ -75,7 +75,7 @@ class NOR:
         self.delay = delay
 
     def value(self):
-        time.sleep(self.delay)
+        time.sleep(self.delay /1000)
         return not(self.input1 or self.input2)
     def setInputs(self, input1, input2):
         self.input1 = input1
@@ -92,7 +92,7 @@ class XOR:
         self.delay = delay
 
     def value(self):
-        time.sleep(self.delay)
+        time.sleep(self.delay /1000)
         return self.input1 ^ self.input2
     def setInputs(self, input1, input2):
         self.input1 = input1
@@ -107,7 +107,7 @@ class buffer:
         self.delay = delay
 
     def value(self):
-        time.sleep(self.delay)
+        time.sleep(self.delay /1000)
         return self.input   
     def setInput(self, input):
         self.input = input
