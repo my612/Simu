@@ -3,23 +3,19 @@ import time
 class NOT:
     def __init__(self, inpName, outName, delay=0, gname=""):
         self.gate_name = gname
-        self.input = 0
-        self.input_name = inpName
+        self.inputs = {inpName: 0}
         self.output_name = outName
         self.delay = delay
     def value(self):
         time.sleep(self.delay /1000)
         return not self.input
     def setInput(self, input):
-        self.input = input
+        self.inputs = input
        
 class AND:
     def __init__(self, inpName1, inpName2, outName, delay=0, gname=""):
         self.gate_name = gname
-        self.input1 = 0
-        self.input2 = 0
-        self.input_name1 = inpName1
-        self.input_name2 = inpName2
+        self.inputs = {inpName1: 0, inpName2: 0}
         self.output_name = outName
         self.delay = delay
 
@@ -33,10 +29,7 @@ class AND:
 class OR:
     def __init__(self, inpName1, inpName2, outName, delay=0, gname=""):
         self.gate_name = gname
-        self.input1 = 0
-        self.input2 = 0
-        self.input_name1 = inpName1
-        self.input_name2 = inpName2
+        self.inputs = {inpName1: 0, inpName2: 0}
         self.output_name = outName
         self.delay = delay
 
@@ -50,10 +43,7 @@ class OR:
 class NAND:
     def __init__(self, inpName1, inpName2, outName, delay=0, gname=""):
         self.gate_name = gname
-        self.input1 = 0
-        self.input2 = 0
-        self.input_name1 = inpName1
-        self.input_name2 = inpName2
+        self.inputs = {inpName1: 0, inpName2: 0}
         self.output_name = outName
         self.delay = delay
 
@@ -67,10 +57,7 @@ class NAND:
 class NOR:
     def __init__(self, inpName1, inpName2, outName, delay=0 , gname=""):
         self.gate_name = gname
-        self.input1 = 0
-        self.input2 = 0
-        self.input_name1 = inpName1
-        self.input_name2 = inpName2
+        self.inputs = {inpName1: 0, inpName2: 0}
         self.output_name = outName
         self.delay = delay
 
@@ -84,10 +71,7 @@ class NOR:
 class XOR:  
     def __init__(self, inpName1, inpName2, outName, delay=0 , gname=""):
         self.gate_name = gname
-        self.input1 = 0
-        self.input2 = 0
-        self.input_name1 = inpName1
-        self.input_name2 = inpName2
+        self.inputs = {inpName1: 0, inpName2: 0}
         self.output_name = outName
         self.delay = delay
 
@@ -101,8 +85,7 @@ class XOR:
 class buffer:
     def __init__(self, inpName, outName, delay=0 , gname=""):
         self.gate_name = gname
-        self.input = 0
-        self.input_name = inpName
+        self.inputs = {inpName: 0}
         self.output_name = outName
         self.delay = delay
 
