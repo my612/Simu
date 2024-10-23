@@ -4,9 +4,13 @@ from utils.utils import printPath, simulatePath
 
 
 def main():
-    ins, outs, gates, inputs = parseVerilog("./tests/circ1.v")
-    simulatePath('in0', inputs, outs, gates, Change('in0', 1))
-    
+    ins, outs, gates, inputs = parseVerilog(
+        "tests\circ6.v"
+    )
+    simulatePath(inputs, outs, gates, Change("C", 0))
+    print(gates["g2"].value())
+
+
 if __name__ == "__main__":
     main()
 
