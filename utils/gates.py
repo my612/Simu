@@ -1,6 +1,6 @@
 import time
 
-from utils.structures import Change
+from .structures import Change
 
 
 class NOT:
