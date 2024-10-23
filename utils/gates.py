@@ -15,7 +15,7 @@ class NOT:
         i = self.inputs.values()
         return not i
 
-    def setInput(self, change: Change):
+    def setInputs(self, change: Change):
         self.inputs[change.input_name] = change.input_value
 
 
