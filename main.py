@@ -5,9 +5,9 @@ from utils.utils import printPath, simulatePath
 
 def main():
     ins, outs, gates, inputs = parseVerilog(
-        "/media/nicolas/New Volume/DD1 Project 1/DD1-project1/tests/circ6.v"
+        "tests\circ6.v"
     )
-    simulatePath(inputs, outs, gates, Change("C", 1))
+    simulatePath(inputs, outs, gates, Change("C", 0))
     print(gates["g2"].value())
 
 
