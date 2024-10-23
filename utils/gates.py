@@ -12,6 +12,7 @@ class NOT:
 
     def value(self):
         time.sleep(self.delay / 1000)
+        i = self.inputs.values()
         return not self.inputs.values()[0]
 
     def setInput(self, change: Change):
@@ -27,7 +28,8 @@ class AND:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return self.inputs.values()[0] and self.inputs.values()[1]
+        i1, i2 = self.inputs.values()
+        return i1 and i2
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
 
