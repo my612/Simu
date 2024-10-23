@@ -5,13 +5,11 @@ from utils.reading import parsestimuli
 
 
 def main():
-    ins, outs, gates, inputs = parseVerilog("./tests/circ1.v")
-    simulate('in0', inputs, outs, gates, Change('in0', 1))
-    timess, inputNamess, inputValuess, ins = parsestimuli("./utils/file.stim")
-    print("Times:", timess)
-    print("Input Names:", inputNamess)
-    print("Input Values:", inputValuess)    
-    print("Instructions", ins)
+    ins, outs, gates, inputs = parseVerilog(
+        "/media/nicolas/New Volume/DD1 Project 1/DD1-project1/tests/circ6.v"
+    )
+    simulatePath(inputs, outs, gates, Change("C", 1))
+    print(gates["g2"].value())
 
 
 if __name__ == "__main__":
