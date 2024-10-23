@@ -1,4 +1,4 @@
-from gates import AND, OR, NOT, NAND, XOR, NOR
+from utils.gates import AND, OR, NOT, NAND, XOR, NOR
 
 
 def parseVerilog(filePath):
