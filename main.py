@@ -3,6 +3,7 @@ from utils.structures import Change
 from utils.utils import printPath, simulatePath
 from utils.reading import parsestimuli
 
+from utils.utils import printPath, simulatePath
 
 
 def main():
