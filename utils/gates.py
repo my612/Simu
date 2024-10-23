@@ -13,7 +13,7 @@ class NOT:
     def value(self):
         time.sleep(self.delay / 1000)
         i = self.inputs.values()
-        return not self.inputs.values()[0]
+        return not i
 
     def setInput(self, change: Change):
         self.inputs[change.input_name] = change.input_value
@@ -43,7 +43,8 @@ class OR:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return self.inputs.values()[0] or self.inputs.values()[1]
+        i1, i2 = self.inputs.values()
+        return i1 or i2
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
 
@@ -57,7 +58,8 @@ class NAND:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return not(self.inputs.values()[0] and self.inputs.values()[1])
+        i1, i2 = self.inputs.values()
+        return not(i1 and i2)
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
 
@@ -71,7 +73,8 @@ class NOR:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return not(self.inputs.values()[0] or self.inputs.values()[1])
+        i1, i2 = self.inputs.values()
+        return not(i1 or i2)
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
 
@@ -85,7 +88,8 @@ class XOR:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return self.inputs.values()[0] ^ self.inputs.values()[1]
+        i1, i2 = self.inputs.values()
+        return i1 ^ i2
     def setInputs(self, change:Change):
         self.inputs[change.input_name] = change.input_value
 
@@ -99,7 +103,8 @@ class buffer:
 
     def value(self):
         time.sleep(self.delay /1000)
-        return self.inputs.values()[0]   
+        i1 = self.inputs.values()
+        return i1   
     def setInputs(self, change:Change):
         time.sleep(self.delay / 1000)
         return self.input
