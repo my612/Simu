@@ -38,3 +38,4 @@ def simulatePath(inputs: dict, outputs: list, gates: dict, change: Change):
             input_name = gate.output_name
             input_value = int(outValue)
             simulatePath(nextWire, inputs, outputs, gates, Change(input_name, input_value))  
+    
