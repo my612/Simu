@@ -52,3 +52,30 @@ def parseVerilog(filePath):
                     ins[parameters[2]].append(line[2])
 
         return inputs, outputs, gates, ins
+    
+
+# 0 A=0;
+# 0 B=0;
+# 0 C=1;
+# 500 A=1;
+# 800 B=1;
+# 1300 C=1;    
+
+def parsestimuli(filePath):
+    times = []
+    inputNames = []
+    inputValues = []
+    instructions = []
+
+    with open(filePath, 'r') as f:
+        for line in f:
+            line = line.replace(";", "")
+            line = line.split()
+            if(line):
+                instructions.append([int(line[1]), line[2].split("=")[0], int(line[2].split("=")[1])])
+                times.append(int(line[1]))
+                inputNames.append(line[2].split("=")[0])
+                inputValues.append(int(line[2].split("=")[1]))
+    return times, inputNames, inputValues, instructions
+
+
