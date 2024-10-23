@@ -113,13 +113,17 @@ class buffer:
     def setInput(self, input):
         self.input = input
 
-
+class change:
+    def __init__(self, inputName, inputValue):
+        self.input_name = inputName
+        self.input_value = inputValue
 def parseVerilog(filePath):
     
     inputs = []
     outputs = []
     wires = []
-    gates = []
+    gates = {}
+    ins = dict()
     with open(filePath, 'r') as f:
         for line in f:
             line = line.replace(";", "")
@@ -127,30 +131,54 @@ def parseVerilog(filePath):
             if(line):
                 if(line[0] == "input"):
                     inputs.append(line[1])
+                    ins[line[1]] = []
                 if(line[0] == "output"):
                     outputs.append(line[1])
                 if(line[0] == "wire"):
                     wires.append(line[1])
+                    ins[line[1]] = []
                 if(line[0] == "not"):
                     parameters = line[3].strip("();").split(",")
-                    gates.append(NOT(parameters[1], parameters[0], int(line[1].strip("#()")), line[2]))
+                    gates[line[2]] = NOT(parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
+                    ins[parameters[1]].append(line[2])
                 if(line[0] == "and"):
                     parameters = line[3].strip("();").split(",")                    
-                    gates.append(AND(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2]))
+                    gates[line[2]] = AND(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
+                    ins[parameters[1]].append(line[2])
+                    ins[parameters[2]].append(line[2])
                 if(line[0] == "or"):
                     parameters = line[3].strip("();").split(",")                    
-                    gates.append(OR(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2]))
+                    gates[line[2]] = OR(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
+                    ins[parameters[1]].append(line[2])
+                    ins[parameters[2]].append(line[2])
                 if(line[0] == "nand"):
                     parameters = line[3].strip("();").split(",")                    
-                    gates.append(NAND(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2]))
+                    gates[line[2]] = NAND(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
+                    ins[parameters[1]].append(line[2])
+                    ins[parameters[2]].append(line[2])
                 if(line[0] == "xor"):
                     parameters = line[3].strip("();").split(",")                    
-                    gates.append(XOR(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2]))
+                    gates[line[2]] = XOR(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
+                    ins[parameters[1]].append(line[2])
+                    ins[parameters[2]].append(line[2])
                 if(line[0] == "NOR"):
                     parameters = line[3].strip("();").split(",")                    
-                    gates.append(NOR(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2]))
+                    gates[line[2]] = NOR(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
+                    ins[parameters[1]].append(line[2])
+                    ins[parameters[2]].append(line[2])
 
-        return inputs, outputs, gates
+        return inputs, outputs, gates, ins
+
+def printPath(start: str, inputs : dict, outputs: list, gates : dict):
+    g:str = inputs[start]
+    gate = gates[g[0]]
+    nextWire = gate.output_name
+    if(nextWire in outputs):
+        print(nextWire, "->>", gate.gate_name)
+        print(gate.value())
+    else:
+        print(start, "->>", gate.gate_name)
+        printPath(nextWire, inputs, outputs, gates)
     
 
             
@@ -163,11 +191,13 @@ def parseVerilog(filePath):
 # nand #(7) g3 (z,y,w);
         
 
-ins, outs, gates = parseVerilog("./tests/circ1.v")
-print (" =--=-=-=-=--= ")
-print(ins)
-print("_________________")
-print(outs)
-print("_________________")
-for g in gates:
-    print(g.gate_name)
+ins, outs, gates, inputs = parseVerilog("./tests/circ1.v")
+# print (" =--=-=-=-=--= ")
+# print(ins)
+# print("_________________")
+# print(outs)
+# print("_________________")
+# for value in gates.values():
+    # print(value.gate_name)
+# print("_________________")
+printPath('in0', inputs, outs, gates)
