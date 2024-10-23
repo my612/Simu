@@ -1,4 +1,4 @@
-from utils.structures import Change
+from .structures import Change
 
 
 def printPath(start: str, inputs: dict, outputs: list, gates: dict):
@@ -32,4 +32,4 @@ def simulate(start: str, inputs: dict, outputs: list, gates: dict, change: Chang
             print("The wire", gate.output_name, "is", outValue)
             change.input_name = gate.output_name
             change.input_value = outValue
-            printPath(nextWire, inputs, outputs, gates, change)
+            simulate(nextWire, inputs, outputs, gates, change)
