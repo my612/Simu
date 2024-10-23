@@ -1,4 +1,5 @@
 from .structures import Change
+from .structures import Timer
 
 
 def printPath(start: str, inputs: dict, outputs: list, gates: dict):
@@ -37,5 +38,16 @@ def simulatePath(inputs: dict, outputs: list, gates: dict, change: Change):
             # print("The wire", gate.output_name, "is", outValue)
             input_name = gate.output_name
             input_value = int(outValue)
-            simulatePath(nextWire, inputs, outputs, gates, Change(input_name, input_value))  
+            simulatePath(inputs, outputs, gates, Change(input_name, input_value))  
+
+
+def simulate(instructions: list, inputs: dict, outputs: list, gates: dict):
+    StopWatch = Timer()
+    for instruction in instructions:
+        delay, input_name, new_input_value = instruction
+        change = Change(input_name, new_input_value)
+        simulatePath(inputs, outputs, gates, change)
+        print("Time: ", StopWatch.get_time(), input_name, gates['g2'].value())
+        # make ouputs a dict that has the output name as the key and the value as the value
+        # add the delay to the instruction
     
