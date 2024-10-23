@@ -170,15 +170,15 @@ def parseVerilog(filePath):
         return inputs, outputs, gates, ins
 
 def printPath(start: str, inputs : dict, outputs: list, gates : dict):
-    g:str = inputs[start]
-    gate = gates[g[0]]
-    nextWire = gate.output_name
-    if(nextWire in outputs):
-        print(nextWire, "->>", gate.gate_name)
-        print(gate.value())
-    else:
-        print(start, "->>", gate.gate_name)
-        printPath(nextWire, inputs, outputs, gates)
+    for g in inputs[start]:
+        gate = gates[g]
+        nextWire = gate.output_name
+        if(nextWire in outputs):
+            print(nextWire, "->>", gate.gate_name)
+            print(gate.value())
+        else:
+            print(start, "->>", gate.gate_name)
+            printPath(nextWire, inputs, outputs, gates)
     
 
             
@@ -200,4 +200,4 @@ ins, outs, gates, inputs = parseVerilog("./tests/circ1.v")
 # for value in gates.values():
     # print(value.gate_name)
 # print("_________________")
-printPath('in0', inputs, outs, gates)
+printPath('sel0', inputs, outs, gates)
