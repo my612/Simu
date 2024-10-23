@@ -1,4 +1,4 @@
-class change:
+class Change:
     def __init__(self, inputName, inputValue):
         self.input_name = inputName
         self.input_value = inputValue
