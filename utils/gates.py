@@ -24,9 +24,9 @@ class AND:
     def value(self):
         time.sleep(self.delay /1000)
         return self.input1 and self.input2
-    def setInputs(self, input1, input2):
-        self.input1 = input1
-        self.input2 = input2
+    def setInputs(self, change:Change):
+        self.inputs[change.input_name] = change.input_value
+
 
 class OR:
     def __init__(self, inpName1, inpName2, outName, delay=0, gname=""):
@@ -38,9 +38,8 @@ class OR:
     def value(self):
         time.sleep(self.delay /1000)
         return self.input1 or self.input2
-    def setInputs(self, input1, input2):
-        self.input1 = input1
-        self.input2 = input2
+    def setInputs(self, change:Change):
+        self.inputs[change.input_name] = change.input_value
         
 class NAND:
     def __init__(self, inpName1, inpName2, outName, delay=0, gname=""):
@@ -52,9 +51,8 @@ class NAND:
     def value(self):
         time.sleep(self.delay /1000)
         return not(self.input1 and self.input2)
-    def setInputs(self, input1, input2):
-        self.input1 = input1
-        self.input2 = input2
+    def setInputs(self, change:Change):
+        self.inputs[change.input_name] = change.input_value
         
 class NOR:
     def __init__(self, inpName1, inpName2, outName, delay=0 , gname=""):
@@ -66,9 +64,8 @@ class NOR:
     def value(self):
         time.sleep(self.delay /1000)
         return not(self.input1 or self.input2)
-    def setInputs(self, input1, input2):
-        self.input1 = input1
-        self.input2 = input2
+    def setInputs(self, change:Change):
+        self.inputs[change.input_name] = change.input_value
     
 class XOR:  
     def __init__(self, inpName1, inpName2, outName, delay=0 , gname=""):
@@ -80,9 +77,8 @@ class XOR:
     def value(self):
         time.sleep(self.delay /1000)
         return self.input1 ^ self.input2
-    def setInputs(self, input1, input2):
-        self.input1 = input1
-        self.input2 = input2
+    def setInputs(self, change:Change):
+        self.inputs[change.input_name] = change.input_value
     
 class buffer:
     def __init__(self, inpName, outName, delay=0 , gname=""):
@@ -94,5 +90,5 @@ class buffer:
     def value(self):
         time.sleep(self.delay /1000)
         return self.input   
-    def setInput(self, input):
-        self.input = input
+    def setInputs(self, change:Change):
+        self.inputs[change.input_name] = change.input_value
