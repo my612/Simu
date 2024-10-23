@@ -177,7 +177,7 @@ def printPath(start: str, inputs : dict, outputs: list, gates : dict):
             print(nextWire, "->>", gate.gate_name)
             print(gate.value())
         else:
-            print(start, "->>", gate.gate_name)
+            print(start, "->>", gate.gate_name, end=" ")
             printPath(nextWire, inputs, outputs, gates)
     
 
@@ -192,12 +192,4 @@ def printPath(start: str, inputs : dict, outputs: list, gates : dict):
         
 
 ins, outs, gates, inputs = parseVerilog("./tests/circ1.v")
-# print (" =--=-=-=-=--= ")
-# print(ins)
-# print("_________________")
-# print(outs)
-# print("_________________")
-# for value in gates.values():
-    # print(value.gate_name)
-# print("_________________")
 printPath('sel0', inputs, outs, gates)
