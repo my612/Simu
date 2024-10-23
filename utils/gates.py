@@ -1,5 +1,7 @@
 import time
 
+from utils.structures import Change
+
 class NOT:
     def __init__(self, inpName, outName, delay=0, gname=""):
         self.gate_name = gname
@@ -9,8 +11,8 @@ class NOT:
     def value(self):
         time.sleep(self.delay /1000)
         return not self.input
-    def setInput(self, input):
-        self.inputs = input
+    def setInput(self, change:Change):
+        self.inputs[change.input_name] = change.input_value
        
 class AND:
     def __init__(self, inpName1, inpName2, outName, delay=0, gname=""):

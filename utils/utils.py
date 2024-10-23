@@ -17,10 +17,16 @@ def simulate(start:str, inputs:dict, outputs: list, gates: dict, change:Change):
         if(nextWire in outputs):
             print(nextWire, "->>", gate.gate_name)
             print(gate.value())
-            outValue = gate.setInputs(change.input_value)
+            gate.setInputs(change)
+            outValue = gate.value()
+            print("The output", gate.output_name, "is", outValue)
         else:
             print(start, "->>", gate.gate_name, end=",")
             print("output is", gate.value(), end=" ")
-            
-            printPath(nextWire, inputs, outputs, gates)
+            gate.setInputs(change)
+            outValue = gate.value()
+            print("The wire", gate.output_name, "is", outValue)
+            change.input_name = gate.output_name
+            change.input_value = outValue
+            printPath(nextWire, inputs, outputs, gates, change)
             
