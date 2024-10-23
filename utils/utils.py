@@ -17,7 +17,8 @@ def printPath(start: str, inputs: dict, outputs: list, gates: dict):
             printPath(nextWire, inputs, outputs, gates)
 
 
-def simulate(start: str, inputs: dict, outputs: list, gates: dict, change: Change):
+def simulatePath(inputs: dict, outputs: list, gates: dict, change: Change):
+    start = change.input_name
     for g in inputs[start]:
         gate = gates[g]
         nextWire = gate.output_name
@@ -36,4 +37,4 @@ def simulate(start: str, inputs: dict, outputs: list, gates: dict, change: Chang
             # print("The wire", gate.output_name, "is", outValue)
             input_name = gate.output_name
             input_value = int(outValue)
-            simulate(nextWire, inputs, outputs, gates, Change(input_name, input_value))  
+            simulatePath(nextWire, inputs, outputs, gates, Change(input_name, input_value))  
