@@ -1,3 +1,4 @@
+import time
 from .structures import Change
 from .structures import Timer
 
@@ -47,6 +48,7 @@ def simulate(instructions: list, inputs: dict, outputs: list, gates: dict):
         delay, input_name, new_input_value = instruction
         change = Change(input_name, new_input_value)
         simulatePath(inputs, outputs, gates, change)
+        time.sleep(delay/1000)
         print("Time: ", StopWatch.get_time(), input_name, gates['g2'].value())
         # make ouputs a dict that has the output name as the key and the value as the value
         # add the delay to the instruction
