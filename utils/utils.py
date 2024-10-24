@@ -42,14 +42,23 @@ def simulatePath(inputs: dict, outputs: list, gates: dict, change: Change):
             simulatePath(inputs, outputs, gates, Change(input_name, input_value))  
 
 
+def OutputGatesValues(outputs: list, gates: dict):
+    output_values = []
+    for output in outputs:
+        for gate_name, gate in gates.items():
+            if gate.output_name == output:
+                output_values.append(gate.value())
+    return output_values
+
+
+
 def simulate(instructions: list, inputs: dict, outputs: list, gates: dict):
     StopWatch = Timer()
     for instruction in instructions:
         delay, input_name, new_input_value = instruction
         change = Change(input_name, new_input_value)
         simulatePath(inputs, outputs, gates, change)
-        time.sleep(delay/1000)
-        print("Time: ", StopWatch.get_time(), input_name, gates['g2'].value())
-        # make ouputs a dict that has the output name as the key and the value as the value
-        # add the delay to the instruction
+        time.sleep(delay / 1000)
+        print(StopWatch.get_time(), input_name, OutputGatesValues(outputs, gates))
+        
     
