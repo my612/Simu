@@ -7,7 +7,7 @@ from utils.utils import printPath, simulatePath
 from utils.reading import parseVerilog, parseStimuli
 
 
-
+#TODO adjust for the case when there's a space between the parameters.
 def main():
     ins, outs, gates, inputs = parseVerilog(
         "./tests/circ3.v"

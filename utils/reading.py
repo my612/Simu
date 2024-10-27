@@ -1,6 +1,5 @@
 from utils.gates import AND, OR, NOT, NAND, XOR, NOR
 
-
 def parseVerilog(filePath):
     
     inputs = []
