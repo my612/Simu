@@ -61,7 +61,7 @@ def parseVerilog(filePath):
 # 800 B=1;
 # 1300 C=1;    
 
-def parsestimuli(filePath):
+def parseStimuli(filePath):
     instructions = []
 
     with open(filePath, 'r') as f:
