@@ -8,12 +8,12 @@ def printPath(start: str, inputs: dict, outputs: list, gates: dict):
         gate = gates[g]
         nextWire = gate.output_name
         if nextWire in outputs:
-            
+
             # print(nextWire, "->>", gate.gate_name)
             # print(gate.value())
             pass
         else:
-            if(start != 'sel_not1'):
+            if start != "sel_not1":
                 print(start, "->>", gate.gate_name, end=",")
                 # print("output is", gate.value(), end=" ")
             printPath(nextWire, inputs, outputs, gates)
@@ -39,7 +39,7 @@ def simulatePath(inputs: dict, outputs: list, gates: dict, change: Change):
             # print("The wire", gate.output_name, "is", outValue)
             input_name = gate.output_name
             input_value = int(outValue)
-            simulatePath(inputs, outputs, gates, Change(input_name, input_value))  
+            simulatePath(inputs, outputs, gates, Change(input_name, input_value))
 
 
 def OutputGatesValues(outputs: list, gates: dict):
@@ -51,7 +51,6 @@ def OutputGatesValues(outputs: list, gates: dict):
     return output_values
 
 
-
 def simulate(instructions: list, inputs: dict, outputs: list, gates: dict):
     StopWatch = Timer()
     for instruction in instructions:
@@ -60,5 +59,3 @@ def simulate(instructions: list, inputs: dict, outputs: list, gates: dict):
         simulatePath(inputs, outputs, gates, change)
         time.sleep(delay / 1000)
         print(StopWatch.get_time(), input_name, OutputGatesValues(outputs, gates))
-        
-    
