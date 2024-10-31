@@ -2,7 +2,7 @@ from utils.gates import AND, OR, NOT, NAND, XOR, NOR
 
 
 def parseVerilog(filePath):
-    
+    print("entered parseVerilog")
     inputs = []
     outputs = []
     wires = []
@@ -62,6 +62,7 @@ def parseVerilog(filePath):
 # 1300 C=1;    
 
 def parsestimuli(filePath):
+    print("entered parsestimuli")
     instructions = []
 
     with open(filePath, 'r') as f:
