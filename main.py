@@ -1,22 +1,24 @@
 from utils.reading import parseVerilog
 from utils.structures import Change
 from utils.utils import printPath, simulatePath, simulate
-from utils.reading import parsestimuli
+from utils.reading import parseStimuli
 from utils.structures import Change
 from utils.utils import printPath, simulatePath
-from utils.reading import parseVerilog, parsestimuli
+from utils.reading import parseVerilog, parseStimuli
 
 
+#TODO adjust for the case when there's a space between the parameters.
 def main():
     ins, outs, gates, inputs = parseVerilog(
-        "tests\circ6.v"
+        "./tests/circ3.v"
     )
-    instructions = parsestimuli("./utils/file.stim")
+    instructions = parseStimuli("./stims/circ3.stim")
     simulate(instructions, inputs, outs, gates)
-
+    
 
 if __name__ == "__main__":
     main()
+
 
 
 

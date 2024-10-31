@@ -1,10 +1,9 @@
 from utils.gates import AND, OR, NOT, NAND, XOR, NOR
 
-
 def parseVerilog(filePath):
     print("entered parseVerilog")
     inputs = []
-    outputs = []
+    outputs = {}
     wires = []
     gates = {}
     ins = dict()
@@ -17,7 +16,7 @@ def parseVerilog(filePath):
                     inputs.append(line[1])
                     ins[line[1]] = []
                 if(line[0] == "output"):
-                    outputs.append(line[1])
+                    outputs[line[1]] = 0
                 if(line[0] == "wire"):
                     wires.append(line[1])
                     ins[line[1]] = []
@@ -62,7 +61,6 @@ def parseVerilog(filePath):
 # 1300 C=1;    
 
 def parsestimuli(filePath):
-    print("entered parsestimuli")
     instructions = []
 
     with open(filePath, 'r') as f:
