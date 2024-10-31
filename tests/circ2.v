@@ -23,4 +23,4 @@ and #(5) g5 (w4,B,C_in);
 
 or #(9) g6 (C_out,w2,w3,w4);
 
-endmodule
+endmodule;
