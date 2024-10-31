@@ -13,7 +13,8 @@ def main():
         "./tests/circ3.v"
     )
     instructions = parseStimuli("./stims/circ3.stim")
-    simulate(instructions, inputs, outs, gates)
+    simfile = "./utils/simulations/sim6.sim"
+    simulate(instructions, inputs, outs, gates, simfile)
     
 
 if __name__ == "__main__":

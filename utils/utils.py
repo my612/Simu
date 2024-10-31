@@ -45,12 +45,14 @@ def OutputGatesValues(outputs: list, gates: dict):
     return output_values
 
 
-def simulate(instructions: list, inputs: dict, outputs: list, gates: dict):
-    StopWatch = Timer()
-    for instruction in instructions:
-        delay, input_name, new_input_value = instruction
-        change = Change(input_name, new_input_value)
-        simulatePath(inputs, outputs, gates, change)
-        time.sleep(delay / 1000)
-        # print(StopWatch.get_time(), input_name, OutputGatesValues(outputs, gates))
-        print(f"{delay}:{outputs}")
+def simulate(instructions: list, inputs: dict, outputs: list, gates: dict, output_file_path: str):
+    with open(output_file_path, 'w') as file:
+        for instruction in instructions:
+            delay, input_name, new_input_value = instruction
+            change = Change(input_name, new_input_value)
+            simulatePath(inputs, outputs, gates, change)
+            time.sleep(delay / 1000)
+            file.write(f"{delay}:{outputs}\n")
+            print(f"{delay}:{outputs}")
+            
+        
