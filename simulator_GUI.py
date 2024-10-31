@@ -10,14 +10,14 @@ class simulator_GUI:
     def __init__(self, root):
         self.root = root
         self.root.title("Logic Circuit Simulator")
-        self.root.geometry("600x400")
+        self.root.geometry("1000x600")
 
 
         self.circuit_file = None
         self.stimuli_file = None
 
 
-        Verilog_button = tk.Button(root, text="Add Verilog fule", command=self.open_file_dialog_V).pack(pady=10)
+        Verilog_button = tk.Button(root, text="Add Verilog file", command=self.open_file_dialog_V).pack(pady=10)
         #Verilog_button.grid(row=0, column=2, columnspan=2)
         Stim_button = tk.Button(root, text="Add Stimuli file", command=self.open_file_dialog_S).pack(pady=10)
         #Stim_button.grid(row=1, column=2, columnspan=2)
@@ -31,8 +31,8 @@ class simulator_GUI:
         self.instructions = []
         self.ins = []
 
-        tk.Label(root, text="Simulation terminal:").pack(pady=5)
-        self.output_box = scrolledtext.ScrolledText(root, width=70, height=15, state='disabled')
+        tk.Label(root, text="Simulation Terminal:").pack(pady=5)
+        self.output_box = scrolledtext.ScrolledText(root, width=100, height=25, state='disabled')
         self.output_box.pack()
 
 
