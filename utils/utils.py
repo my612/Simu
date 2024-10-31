@@ -53,4 +53,4 @@ def simulate(instructions: list, inputs: dict, outputs: list, gates: dict):
         simulatePath(inputs, outputs, gates, change)
         time.sleep(delay / 1000)
         # print(StopWatch.get_time(), input_name, OutputGatesValues(outputs, gates))
-        print(outputs)
+        print(f"{delay}:{outputs}")
