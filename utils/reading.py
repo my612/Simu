@@ -54,14 +54,7 @@ def parseVerilog(filePath):
                     gates[line[2]] = buffer(parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
                     ins[parameters[1]].append(line[2])
         return inputs, outputs, gates, ins
-    
-
-# 0 A=0;
-# 0 B=0;
-# 0 C=1;
-# 500 A=1;
-# 800 B=1;
-# 1300 C=1;    
+      
 
 def parseStimuli(filePath):
     instructions = []
@@ -131,15 +124,10 @@ def parseVerilog(filePath):
         return inputs, outputs, gates, ins
     
 
-# 0 A=0;
-# 0 B=0;
-# 0 C=1;
-# 500 A=1;
-# 800 B=1;
-# 1300 C=1;    
 
-def parsestimuli(filePath):
-    print("entered parsestimuli")
+
+def parseStimuli(filePath):
+    print("entered parseStimuli")
     instructions = []
 
     with open(filePath, 'r') as f:
