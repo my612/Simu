@@ -1,6 +1,6 @@
 from utils.reading import parseVerilog
 from utils.structures import Change
-from utils.utils import printPath, simulatePath, simulate
+from utils.utils import simulatePath, simulate
 from utils.reading import parseStimuli
 
 
@@ -18,7 +18,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
