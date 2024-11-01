@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import filedialog, messagebox, scrolledtext
 from utils.reading import parseVerilog, parseStimuli
-from utils.utils import simulate
+from utils.utils import simulate, simulate_g
 from utils.structures import Change
 
 
@@ -12,7 +12,11 @@ class simulator_GUI:
         self.root.title("Logic Circuit Simulator")
         self.root.geometry("1000x600")
 
-
+        self.gates = {}
+        self.inputs = {}
+        self.outputs = {}
+        self.instructions = []
+        self.ins = {}
         self.circuit_file = None
         self.stimuli_file = None
 
@@ -24,12 +28,6 @@ class simulator_GUI:
         start_button = tk.Button(root, text="Start Simulation", command=self.start_simulation).pack(pady=10)
         #start_button.grid(row=2, column=2, columnspan=2)
 
-
-        self.gates = {}
-        self.inputs = {}
-        self.outputs = []
-        self.instructions = []
-        self.ins = []
 
         tk.Label(root, text="Simulation Terminal:").pack(pady=5)
         self.output_box = scrolledtext.ScrolledText(root, width=100, height=25, state='disabled')
@@ -56,22 +54,25 @@ class simulator_GUI:
         if not self.circuit_file or not self.stimuli_file:
             messagebox.showwarning("Warning", "Add circuit and stimuli files and try again.")
             return
-        print("starting simulation")
-       
+        
         self.output_box.config(state='normal')
         self.output_box.delete(1.0, tk.END)
 
+        print("\n\nstarting simulation\n\n")
+        simfile = "./utils/simulations/sim3.sim"
+        try: 
+            results =  simulate_g(self.instructions, self.ins, self.outputs, self.gates)
+        except Exception as e:
+            print("\n\nerror", e)
+            return
         
-        results = simulate(self.instructions, self.inputs, self.outputs, self.gates)
         for result in results:
             self.output_box.insert(tk.END, result + "\n")
 
-        self.output_box.config(state='disabled')  # Disable editing of the output box
+        self.output_box.config(state='disabled')
+        print("\n\nsimulation done\n\n")
 
-        # print(self.instructions, "/n", self.inputs, self.outputs, self.gates)
-        # simulate(self.instructions, self.inputs, self.outputs, self.gates)
-        
-        # messagebox.showinfo("final", self.outputs)
+
 
 root = tk.Tk()
 app = simulator_GUI(root)
