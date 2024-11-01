@@ -32,7 +32,7 @@ def simulatePath(inputs: dict, outputs: list, gates: dict, change: Change, chang
 
 def simulate(instructions: list, inputs: dict, outputs: list, gates: dict, output_file_path: str):
     timestamp = 0
-    previous_state = {output: 0 for output in outputs}
+    previous_state = {output: None for output in outputs}
     with open(output_file_path, 'w') as file:
         for instruction in instructions:
             delay, input_name, new_input_value = instruction

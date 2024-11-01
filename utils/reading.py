@@ -16,7 +16,7 @@ def parseVerilog(filePath):
                     inputs.append(line[1])
                     ins[line[1]] = []
                 if(line[0] == "output"):
-                    outputs[line[1]] = 0
+                    outputs[line[1]] = None
                 if(line[0] == "wire"):
                     wires.append(line[1])
                     ins[line[1]] = []
