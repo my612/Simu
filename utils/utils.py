@@ -46,13 +46,15 @@ def OutputGatesValues(outputs: list, gates: dict):
 
 
 def simulate(instructions: list, inputs: dict, outputs: list, gates: dict, output_file_path: str):
+    timestamp = 0
     with open(output_file_path, 'w') as file:
         for instruction in instructions:
             delay, input_name, new_input_value = instruction
             change = Change(input_name, new_input_value)
             simulatePath(inputs, outputs, gates, change)
-            time.sleep(delay / 1000)
-            file.write(f"{delay}:{outputs}\n")
-            print(f"{delay}:{outputs}")
+            time.sleep(delay / 1000000)
+            timestamp += delay
+            file.write(f"{timestamp}:{outputs}\n")
+            print(f"{timestamp}:{outputs}")
             
         
