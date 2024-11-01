@@ -49,9 +49,8 @@ def simulate(instructions: list, inputs: dict, outputs: list, gates: dict, outpu
             print(f"{input_wire_str}")
             if changed_wires:
                 changed_wires_str = '\n'.join([f"{timestamp + wire_delay}: {wire}: {value}" for wire, value, wire_delay in changed_wires])
-                input_change_str = f"{input_name} = {new_input_value}"
-                file.write(f"{timestamp}: {input_change_str}\n{changed_wires_str}\n")
-                print(f"{timestamp}: {input_change_str}\n{changed_wires_str}")
+                file.write(f"{changed_wires_str}\n")
+                print(f"{changed_wires_str}")
             
         
 def simulate_g(instructions: list, inputs: dict, outputs: list, gates: dict):
