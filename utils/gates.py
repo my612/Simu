@@ -12,7 +12,7 @@ class NOT:
 
     def value(self):
         time.sleep(self.delay / 1000)
-        i = self.inputs.values()
+        i = list(self.inputs.values())[0]
         return not i
 
     def setInputs(self, change: Change):
@@ -103,7 +103,7 @@ class buffer:
 
     def value(self):
         time.sleep(self.delay /1000)
-        i1 = self.inputs.values()
+        i1 = list(self.inputs.values())[0]
         return i1   
     def setInputs(self, change:Change):
         time.sleep(self.delay / 1000)

@@ -1,4 +1,4 @@
-from utils.gates import AND, OR, NOT, NAND, XOR, NOR
+from utils.gates import AND, OR, NOT, NAND, XOR, NOR, buffer
 
 def parseVerilog(filePath):
     
@@ -44,12 +44,15 @@ def parseVerilog(filePath):
                     gates[line[2]] = XOR(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
                     ins[parameters[1]].append(line[2])
                     ins[parameters[2]].append(line[2])
-                if(line[0] == "NOR"):
+                if(line[0] == "nor"):
                     parameters = line[3].strip("();").split(",")                    
                     gates[line[2]] = NOR(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
                     ins[parameters[1]].append(line[2])
                     ins[parameters[2]].append(line[2])
-
+                if(line[0] == "buf"):
+                    parameters = line[3].strip("();").split(",")
+                    gates[line[2]] = buffer(parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
+                    ins[parameters[1]].append(line[2])
         return inputs, outputs, gates, ins
     
 
