@@ -67,15 +67,15 @@ def simulate_g(instructions: list, inputs: dict, outputs: list, gates: dict):
         timestamp += delay
         # Filter out wires that did not change
         changed_wires = [(wire, value, wire_delay) for wire, value, wire_delay in changed_wires if previous_state.get(wire) != value]
-        # Update the previous state
+        # Update the previous state of the wires that changed
         for wire, value, _ in changed_wires:
             previous_state[wire] = value
+        # Collect the input change
+        input_wire_str = f"{timestamp}: {input_name} = {new_input_value}"
+        results.append(input_wire_str)
+        # Collect the changed wires
         if changed_wires:
-            changed_wires_str = '\n'.join([f"{timestamp + wire_delay}: {wire}: {value}" for wire, value, wire_delay in changed_wires])
-            input_change_str = f"{input_name} = {new_input_value}"
-            result_str = f"{timestamp}: {input_change_str}\n{changed_wires_str}\n"
-            results.append(result_str)
-            
+            changed_wires_str = [f"{timestamp + wire_delay}: {wire}: {value}" for wire, value, wire_delay in changed_wires]
+            results.extend(changed_wires_str)
     
     return results
-                    
