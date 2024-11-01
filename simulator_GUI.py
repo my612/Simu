@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import filedialog, messagebox, scrolledtext
-from utils.reading import parseVerilog, parsestimuli
+from utils.reading import parseVerilog, parseStimuli
 from utils.utils import simulate
 from utils.structures import Change
 
@@ -48,7 +48,7 @@ class simulator_GUI:
         file_path = filedialog.askopenfilename(filetypes=[("Stimuli Files", "*.stim")])
         if file_path:
             self.stimuli_file = file_path
-            self.instructions = parsestimuli(file_path)
+            self.instructions = parseStimuli(file_path)
             print("parsed s",self.instructions)
             
 
