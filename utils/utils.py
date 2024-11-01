@@ -41,8 +41,9 @@ def simulate(instructions: list, inputs: dict, outputs: list, gates: dict, outpu
             changed_wires = [(wire, value, wire_delay) for wire, value, wire_delay in changed_wires if previous_state.get(wire) != value]  # Filter out wires that did not change
             for wire, value, _ in changed_wires:             # Update the previous state of the wires that changed
                 previous_state[wire] = value
-            file.write(f"{timestamp}: {input_name} = {new_input_value}\n")
-            print(f"{timestamp}: {input_name} = {new_input_value}")
+            input_wire_str = '\n'.join([f"{timestamp}: {input_name} = {new_input_value}"])  
+            file.write(f"{input_wire_str}\n")
+            print(f"{input_wire_str}")
             if changed_wires:
                 changed_wires_str = '\n'.join([f"{timestamp + wire_delay}: {wire}: {value}" for wire, value, wire_delay in changed_wires])
                 file.write(f"{changed_wires_str}\n")
