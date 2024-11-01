@@ -16,8 +16,13 @@ class NOT:
         return not i
 
     def setInputs(self, change: Change):
-        self.inputs[change.input_name] = change.input_value
-
+        if(change.input_name in self.inputs):
+            self.inputs[change.input_name] = change.input_value
+        else:
+            print("Input not found in the dictionary of the gate")
+            print("The input is: ", change.input_name)
+            print("The gate is: ", self.gate_name)
+            exit(1)
 
 class AND:
     def __init__(self, inpName1, inpName2, outName, delay=0, gname=""):
@@ -31,8 +36,13 @@ class AND:
         i1, i2 = self.inputs.values()
         return i1 and i2
     def setInputs(self, change:Change):
-        self.inputs[change.input_name] = change.input_value
-
+        if(change.input_name in self.inputs):
+            self.inputs[change.input_name] = change.input_value
+        else:
+            print("Input not found in the dictionary of the gate")
+            print("The input is: ", change.input_name)
+            print("The gate is: ", self.gate_name)
+            exit(1)
 
 class OR:
     def __init__(self, inpName1, inpName2, outName, delay=0, gname=""):
@@ -46,7 +56,14 @@ class OR:
         i1, i2 = self.inputs.values()
         return i1 or i2
     def setInputs(self, change:Change):
-        self.inputs[change.input_name] = change.input_value
+        if(change.input_name in self.inputs):
+            self.inputs[change.input_name] = change.input_value
+        else:
+            print("Input not found in the dictionary of the gate")
+            print("The input is: ", change.input_name)
+            print("The gate is: ", self.gate_name)
+            exit(1)
+
 
 
 class NAND:
@@ -61,7 +78,14 @@ class NAND:
         i1, i2 = self.inputs.values()
         return not(i1 and i2)
     def setInputs(self, change:Change):
-        self.inputs[change.input_name] = change.input_value
+        if(change.input_name in self.inputs):
+            self.inputs[change.input_name] = change.input_value
+        else:
+            print("Input not found in the dictionary of the gate")
+            print("The input is: ", change.input_name)
+            print("The gate is: ", self.gate_name)
+            exit(1)
+
 
 
 class NOR:
@@ -76,7 +100,14 @@ class NOR:
         i1, i2 = self.inputs.values()
         return not(i1 or i2)
     def setInputs(self, change:Change):
-        self.inputs[change.input_name] = change.input_value
+        if(change.input_name in self.inputs):
+            self.inputs[change.input_name] = change.input_value
+        else:
+            print("Input not found in the dictionary of the gate")
+            print("The input is: ", change.input_name)
+            print("The gate is: ", self.gate_name)
+            exit(1)
+
 
 
 class XOR:
@@ -91,7 +122,14 @@ class XOR:
         i1, i2 = self.inputs.values()
         return i1 ^ i2
     def setInputs(self, change:Change):
-        self.inputs[change.input_name] = change.input_value
+        if(change.input_name in self.inputs):
+            self.inputs[change.input_name] = change.input_value
+        else:
+            print("Input not found in the dictionary of the gate")
+            print("The input is: ", change.input_name)
+            print("The gate is: ", self.gate_name)
+            exit(1)
+
 
 
 class buffer:
@@ -110,4 +148,11 @@ class buffer:
         return self.input
 
     def setInputs(self, change: Change):
-        self.inputs[change.input_name] = change.input_value
+        if(change.input_name in self.inputs):
+            self.inputs[change.input_name] = change.input_value
+        else:
+            print("Input not found in the dictionary of the gate")
+            print("The input is: ", change.input_name)
+            print("The gate is: ", self.gate_name)
+            exit(1)
+
