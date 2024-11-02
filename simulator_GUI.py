@@ -86,11 +86,3 @@ class simulator_GUI:
         
         waveform(simfile, self.inputs, self.outputs)
 
-root = tk.Tk()
-app = simulator_GUI(root)
-root.mainloop()
-    #0ther features
-    #canvas for circuit display
-    #create a terminal (or something similar)
-    #
-
