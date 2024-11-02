@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["gname", "NAND", "verilog"],
+  "cSpell.words": ["gname", "NAND", "simfile", "stim", "stims", "verilog"],
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",
