@@ -24,6 +24,8 @@ def simulatePath(inputs: dict, outputs: list, gates: dict, change: Change, chang
             gate.setInputs(change)
             outValue = gate.value()
             input_name = gate.output_name
+            if(outValue is None):
+                outValue = 0
             input_value = int(outValue)
             if input_name not in [wire for wire, _, _ in changed_wires]:
                 changed_wires.append((input_name, input_value, total_delay))
