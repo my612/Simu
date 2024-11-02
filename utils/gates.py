@@ -14,7 +14,7 @@ class NOT:
     def value(self): 
         time.sleep(self.delay / 1000)
         i = list(self.inputs.values())[0]
-        return not i
+        return int(not i)
 
     def setInputs(self, change: Change):
         if(change.input_name in self.inputs):
