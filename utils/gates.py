@@ -27,7 +27,7 @@ class NOT:
 class AND:
     def __init__(self, inpName1, inpName2, outName, delay=0, gname=""):
         self.gate_name = gname
-        self.inputs = {inpName1: None, inpName2: None}
+        self.inputs = {inpName1: 0, inpName2: 0}
         self.output_name = outName
         self.delay = delay
 
