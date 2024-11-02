@@ -117,11 +117,9 @@ def simulateBFS(instructions: list, inputs: dict, outputs: list, gates: dict, ou
             timestamp += delay
             change = {input_name: (new_input_value, timestamp)}
             previous_state, changes = simulateChangeBFS(inputs, previous_state, gates, change)
-            # print(instruction)
-            # print(outputs)
-            # print(changes)
-            
+
             if changes:
                 changed_wires_str = '\n'.join([f"{time}: {wire}: {value}" for wire, (value, time) in changes.items()])
                 file.write(f"{changed_wires_str}\n")
-                print(f"{changed_wires_str}")  
+                print(f"{changed_wires_str}") 
+    return previous_state 
