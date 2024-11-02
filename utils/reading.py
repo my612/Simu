@@ -68,17 +68,16 @@ def parseStimuli(filePath):
 
 
 def parseSimFile(filepath, inputs, outputs):
-    fn : dict[int, list[tuple]] = {}
-    inputs = ['A', 'B', 'C_in']
-    outputs = ['S', 'C_out']
-    with open(filepath, 'r') as f:
+    fn: dict[int, list[tuple]] = {}
+    with open(filepath, "r") as f:
         for line in f:
             line = line.replace(":", "").replace("=", "")
             line = line.split()
-            if(line):
-                print(line[1])                
-                if(line[1] in inputs or line[1] in outputs):
-                    if(line[1] not in fn):
+            if line:
+                if line[1] in inputs or line[1] in outputs:
+                    if line[1] not in fn:
                         fn[line[1]] = []
+                    if(line[2] == "None"):
+                        fn[line[1]].append((line[0], 0))
                     fn[line[1]].append((line[0], line[2]))
     return fn
