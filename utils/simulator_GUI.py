@@ -82,11 +82,9 @@ class simulator_GUI:
 
         for result in results:
             self.output_box.insert(tk.END, result + "\n")
-        # self.output_box.insert(tk.END, results)
         self.output_box.insert(tk.END, "Simulation done!")
         self.output_box.config(state="disabled")
         print("\n\nsimulation done\n\n")
-        # print(results)
     def show_waveform(self):
         if not self.circuit_file or not self.stimuli_file:
             messagebox.showwarning(
