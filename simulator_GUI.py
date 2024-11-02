@@ -1,9 +1,10 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from tkinter import filedialog, messagebox, scrolledtext
+from tkinter import filedialog, messagebox, scrolledtext, Toplevel
 from utils.reading import parseVerilog, parseStimuli
 from utils.utils import simulate, simulate_g
 from utils.structures import Change
+from utils.waveform import waveform 
 
 
 class simulator_GUI:
@@ -25,6 +26,7 @@ class simulator_GUI:
         Verilog_button = tk.Button(root, text="Add Verilog file", command=self.open_file_dialog_V).pack(pady=10)
         Stim_button = tk.Button(root, text="Add Stimuli file", command=self.open_file_dialog_S).pack(pady=10)
         start_button = tk.Button(root, text="Start Simulation", command=self.start_simulation).pack(pady=10)
+        waveform_button = tk.Button(root, text="Show Waveform", command=self.show_waveform).pack(pady=10)
 
 
         tk.Label(root, text="Simulation Terminal:").pack(pady=5)
@@ -73,6 +75,16 @@ class simulator_GUI:
         print("\n\nsimulation done\n\n")
 
 
+    
+    def show_waveform(self):
+        if not self.circuit_file or not self.stimuli_file:
+            messagebox.showwarning("Warning", "Add circuit and stimuli files and try again.")
+            return
+
+        simfile = "./utils/simulations/sim_g.sim"
+        
+        
+        waveform(simfile, self.inputs, self.outputs)
 
 root = tk.Tk()
 app = simulator_GUI(root)
