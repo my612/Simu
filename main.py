@@ -7,9 +7,6 @@ import simulator_GUI
 import tkinter as tk
 
 
-#TODO adjust for the case when there's a space between the parameters.
-#TODO Find a way to pass the output into another gate
-#TODO CLEAN THE CODE (Unwanted comments, print statements, etc)
 from simulator_GUI import simulator_GUI
 import tkinter as tk
 def main():
