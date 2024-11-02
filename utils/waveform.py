@@ -7,7 +7,6 @@ from utils.reading import parseSimFile
 def waveform(simPath, inputs, outputs):
     data = parseSimFile(simPath, inputs, outputs)
     maxTime = 0
-    # keysLen = len(list(data.keys))
     keysLen = data.keys().__len__()
     fig, ax = plt.subplots(keysLen, sharex=True, sharey=True)
     fig.set_layout_engine("constrained")

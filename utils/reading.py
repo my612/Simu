@@ -77,5 +77,7 @@ def parseSimFile(filepath, inputs, outputs):
                 if line[1] in inputs or line[1] in outputs:
                     if line[1] not in fn:
                         fn[line[1]] = []
+                    if(line[2] == "None"):
+                        fn[line[1]].append((line[0], 0))
                     fn[line[1]].append((line[0], line[2]))
     return fn
