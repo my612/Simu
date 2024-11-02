@@ -41,10 +41,10 @@ and #(5) g8 (w6,w5,in2);
 and #(5) g9 (w7,sel1,sel0);
 and #(5) g10 (w8,in3,w7);
 
-or #(9) g11 (w9,w2,w4)
-or #(9) g12 (w10,w6,w8)
-or #(9) g13 (out,w9,w10)
+or #(9) g11 (w9,w2,w4);
+or #(9) g12 (w10,w6,w8);
+or #(9) g13 (out,w9,w10);
 
 
 
-endmodule
+endmodule;

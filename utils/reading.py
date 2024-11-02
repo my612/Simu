@@ -1,10 +1,9 @@
-from utils.gates import AND, OR, NOT, NAND, XOR, NOR
-
+from utils.gates import AND, OR, NOT, NAND, XOR, NOR, buffer
 
 def parseVerilog(filePath):
-    print("entered parseVerilog")
+    
     inputs = []
-    outputs = []
+    outputs = {}
     wires = []
     gates = {}
     ins = dict()
@@ -17,7 +16,7 @@ def parseVerilog(filePath):
                     inputs.append(line[1])
                     ins[line[1]] = []
                 if(line[0] == "output"):
-                    outputs.append(line[1])
+                    outputs[line[1]] = None
                 if(line[0] == "wire"):
                     wires.append(line[1])
                     ins[line[1]] = []
@@ -45,24 +44,18 @@ def parseVerilog(filePath):
                     gates[line[2]] = XOR(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
                     ins[parameters[1]].append(line[2])
                     ins[parameters[2]].append(line[2])
-                if(line[0] == "NOR"):
+                if(line[0] == "nor"):
                     parameters = line[3].strip("();").split(",")                    
                     gates[line[2]] = NOR(parameters[2], parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
                     ins[parameters[1]].append(line[2])
                     ins[parameters[2]].append(line[2])
-
+                if(line[0] == "buf"):
+                    parameters = line[3].strip("();").split(",")
+                    gates[line[2]] = buffer(parameters[1], parameters[0], int(line[1].strip("#()")), line[2])
+                    ins[parameters[1]].append(line[2])
         return inputs, outputs, gates, ins
     
-
-# 0 A=0;
-# 0 B=0;
-# 0 C=1;
-# 500 A=1;
-# 800 B=1;
-# 1300 C=1;    
-
-def parsestimuli(filePath):
-    print("entered parsestimuli")
+def parseStimuli(filePath):
     instructions = []
 
     with open(filePath, 'r') as f:
@@ -74,3 +67,15 @@ def parsestimuli(filePath):
     return instructions
 
 
+def parseSimFile(filepath, inputs, outputs):
+    fn: dict[int, list[tuple]] = {}
+    with open(filepath, "r") as f:
+        for line in f:
+            line = line.replace(":", "").replace("=", "")
+            line = line.split()
+            if line:
+                if line[1] in inputs or line[1] in outputs:
+                    if line[1] not in fn:
+                        fn[line[1]] = []
+                    fn[line[1]].append((line[0], line[2]))
+    return fn
