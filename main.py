@@ -23,7 +23,7 @@ def main():
     # changes = {'in1': (0, 0), 'in0': (1, 10), 'en': (1, 10)}
     # o, oo = simulateChangeBFS(inputs, outs, gates, changes)
     # print(oo)
-    simulateBFS(instructions, inputs, outs, gates, "./utils/simulations/sim6.sim")
+    simulateBFS(instructions, inputs, outs, gates, "./utils/simulations/sim1.sim")
 
 if __name__ == "__main__":
     main()
