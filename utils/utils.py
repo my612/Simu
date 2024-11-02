@@ -81,3 +81,47 @@ def simulate_g(instructions: list, inputs: dict, outputs: list, gates: dict):
             results.extend(changed_wires_str)
     
     return results
+
+def simulateChangeBFS(inputs:dict, prevState:dict, gates:dict, changes:dict):
+    queue = []
+    outs = {}
+    for start in changes.keys():
+        queue = queue + inputs[start]
+    while queue:
+        current = gates[queue.pop(0)]
+        inputNames = current.inputs.keys()
+        # print(changes)
+        for i in inputNames:
+            if i in changes:
+                delay = changes[i][1] + current.delay
+                current.setInputs(Change(i, changes[i][0]))
+        outValue = current.value()
+        if current.output_name in prevState:
+            outs[current.output_name] = outValue
+            if(prevState[current.output_name] != outs[current.output_name]):
+                changes[current.output_name] = (outValue, delay)
+        
+        else:
+            queue = queue + inputs[current.output_name]
+            changes[current.output_name] = (outValue, delay)
+        
+    return outs, changes
+        
+        
+def simulateBFS(instructions: list, inputs: dict, outputs: list, gates: dict, output_file_path: str):
+    timestamp = 0
+    previous_state = {output: None for output in outputs}
+    with open(output_file_path, 'w') as file:
+        for instruction in instructions:
+            delay, input_name, new_input_value = instruction
+            timestamp += delay
+            change = {input_name: (new_input_value, timestamp)}
+            previous_state, changes = simulateChangeBFS(inputs, previous_state, gates, change)
+            # print(instruction)
+            # print(outputs)
+            # print(changes)
+            
+            if changes:
+                changed_wires_str = '\n'.join([f"{time}: {wire}: {value}" for wire, (value, time) in changes.items()])
+                file.write(f"{changed_wires_str}\n")
+                print(f"{changed_wires_str}")  
