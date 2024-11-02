@@ -1,29 +1,15 @@
 from matplotlib import pyplot as plt
 import numpy as np
+from utils.reading import parseSimFile
 
-
-def parseSimFile(filepath, inputs, outputs):
-    fn: dict[int, list[tuple]] = {}
-    inputs = ["A", "B", "C_in"]
-    outputs = ["S", "C_out"]
-    with open(filepath, "r") as f:
-        for line in f:
-            line = line.replace(":", "").replace("=", "")
-            line = line.split()
-            if line:
-                print(line[1])
-                if line[1] in inputs or line[1] in outputs:
-                    if line[1] not in fn:
-                        fn[line[1]] = []
-                    fn[line[1]].append((line[0], line[2]))
-    return fn
 
 
 def waveform(simPath, inputs, outputs):
-    data = parseSimFile(simPath, [], [])
+    data = parseSimFile(simPath, inputs, outputs)
     maxTime = 0
-    # keysLen = int(len(list(data.keys)))
-    fig, ax = plt.subplots(5, sharex=True, sharey=True)
+    # keysLen = len(list(data.keys))
+    keysLen = data.keys().__len__()
+    fig, ax = plt.subplots(keysLen, sharex=True, sharey=True)
     fig.set_layout_engine("constrained")
     fig.subplots_adjust(left=2, right=2, top=2, bottom=2)
     for i, key in enumerate(data.keys()):

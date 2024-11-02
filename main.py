@@ -2,6 +2,7 @@ from utils.reading import parseVerilog
 from utils.structures import Change
 from utils.utils import simulatePath, simulate
 from utils.reading import parseStimuli
+from utils.waveform import waveform
 
 
 #TODO adjust for the case when there's a space between the parameters.
@@ -9,12 +10,9 @@ from utils.reading import parseStimuli
 #TODO CLEAN THE CODE (Unwanted comments, print statements, etc)
 def main():
     ins, outs, gates, inputs = parseVerilog(
-        "./tests/circ2.v"   
+        "./tests/circ3.v"   
     )
-    # instructions = parseStimuli("./stims/circ2.stim")
-    # simfile = "./utils/simulations/sim2.sim"
-    # simulate(instructions, inputs, outs, gates, simfile)
-    print(ins, list(outs.keys()))
+    waveform("./utils/simulations/sim3.sim", ins, list(outs.keys()))
 if __name__ == "__main__":
     main()
 
