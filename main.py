@@ -13,14 +13,6 @@ import tkinter as tk
 from simulator_GUI import simulator_GUI
 import tkinter as tk
 def main():
-    
-    root = tk.Tk()
-    app = simulator_GUI(root)
-    root.mainloop()
-    # ins, outs, gates, inputs = parseVerilog(
-    #     "./tests/circ3.v"   
-    # )
-    # waveform("./utils/simulations/sim3.sim", ins, list(outs.keys()))
     root = tk.Tk()
     app = simulator_GUI(root)
     root.mainloop()
