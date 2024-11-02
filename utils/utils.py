@@ -72,11 +72,11 @@ def simulate_g(instructions: list, inputs: dict, outputs: list, gates: dict):
         # Update the previous state
         for wire, value, _ in changed_wires:
             previous_state[wire] = value
+        input_wire_str = f"{timestamp}: {input_name} = {new_input_value}"
+        results.append(input_wire_str)
         if changed_wires:
             changed_wires_str = '\n'.join([f"{timestamp + wire_delay}: {wire}: {value}" for wire, value, wire_delay in changed_wires])
-            input_change_str = f"{input_name} = {new_input_value}"
-            result_str = f"{timestamp}: {input_change_str}\n{changed_wires_str}\n"
-            results.append(result_str)
+            results.append(changed_wires_str)
             
     
     return results
