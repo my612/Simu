@@ -15,10 +15,10 @@ def main():
     root = tk.Tk()
     app = simulator_GUI(root)
     root.mainloop()
-    ins, outs, gates, inputs = parseVerilog(
-        "./tests/circ3.v"   
-    )
-    waveform("./utils/simulations/sim3.sim", ins, list(outs.keys()))
+    # ins, outs, gates, inputs = parseVerilog(
+    #     "./tests/circ3.v"   
+    # )
+    # waveform("./utils/simulations/sim3.sim", ins, list(outs.keys()))
 if __name__ == "__main__":
     main()
 
