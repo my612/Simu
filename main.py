@@ -9,10 +9,10 @@ from utils.reading import parseStimuli
 #TODO CLEAN THE CODE (Unwanted comments, print statements, etc)
 def main():
     ins, outs, gates, inputs = parseVerilog(
-        "./tests/circ3.v"   
+        "./tests/circ4.v"   
     )
-    instructions = parseStimuli("./stims/circ3.stim")
-    simfile = "./utils/simulations/sim3.sim"
+    instructions = parseStimuli("./stims/circ4.stim")
+    simfile = "./utils/simulations/sim4.sim"
     simulate(instructions, inputs, outs, gates, simfile)
     
 
