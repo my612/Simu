@@ -11,10 +11,10 @@ def main():
     ins, outs, gates, inputs = parseVerilog(
         "./tests/circ2.v"   
     )
-    instructions = parseStimuli("./stims/circ2.stim")
-    simfile = "./utils/simulations/sim2.sim"
-    simulate(instructions, inputs, outs, gates, simfile)
-    
-
+    # instructions = parseStimuli("./stims/circ2.stim")
+    # simfile = "./utils/simulations/sim2.sim"
+    # simulate(instructions, inputs, outs, gates, simfile)
+    print(ins, list(outs.keys()))
 if __name__ == "__main__":
     main()
+
