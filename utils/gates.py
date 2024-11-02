@@ -2,15 +2,16 @@ import time
 
 from .structures import Change
 
+# The following classes are the gates that are used in the simulation
 
 class NOT:
-    def __init__(self, inpName, outName, delay=0, gname=""):
-        self.gate_name = gname
-        self.inputs = {inpName: 0}
-        self.output_name = outName
-        self.delay = delay
+    def __init__(self, inpName, outName, delay=0, gname=""): # The constructor of the class
+        self.gate_name = gname # The name of the gate
+        self.inputs = {inpName: 0} # The input of the gate
+        self.output_name = outName # The output of the gate
+        self.delay = delay # The delay of the gate
 
-    def value(self):
+    def value(self): 
         time.sleep(self.delay / 1000)
         i = list(self.inputs.values())[0]
         return not i
