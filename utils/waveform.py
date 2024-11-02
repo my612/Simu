@@ -3,7 +3,6 @@ import numpy as np
 from utils.reading import parseSimFile
 
 
-
 def waveform(simPath, inputs, outputs):
     data = parseSimFile(simPath, inputs, outputs)
     maxTime = 0
