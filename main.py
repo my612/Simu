@@ -9,7 +9,7 @@ from utils.utils import simulateChangeBFS, simulateBFS
 #TODO CLEAN THE CODE (Unwanted comments, print statements, etc)
 def main():
     ins, outs, gates, inputs = parseVerilog(
-        "./tests/circ3.v"   
+        "./tests/circ6.v"   
     )
     # instructions = parseStimuli("./stims/circ2.stim")
     # simfile = "./utils/simulations/sim2.sim"
@@ -19,11 +19,11 @@ def main():
     # g = [(gate.gate_name, gate.output_name) for gate in gates.values()]
     # print(g)
     # print(outs)
-    instructions = parseStimuli("./stims/circ3.stim")
+    instructions = parseStimuli("./stims/circ6.stim")
     # changes = {'in1': (0, 0), 'in0': (1, 10), 'en': (1, 10)}
     # o, oo = simulateChangeBFS(inputs, outs, gates, changes)
     # print(oo)
-    simulateBFS(instructions, inputs, outs, gates, "./utils/simulations/sim3.sim")
+    simulateBFS(instructions, inputs, outs, gates, "./utils/simulations/sim6.sim")
 if __name__ == "__main__":
     main()
 
