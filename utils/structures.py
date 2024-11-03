@@ -1,15 +1,8 @@
 import time
 
 
-class Change:
+class Change: # The class to represent the change instruction
     def __init__(self, inputName, inputValue):
-        self.input_name = inputName
-        self.input_value = inputValue
+        self.input_name = inputName 
+        self.input_value = inputValue 
 
-
-class Timer:
-    def __init__(self):
-        self.start = time.perf_counter()
-
-    def get_time(self):
-        return time.perf_counter() - self.start
